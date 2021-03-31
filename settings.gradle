@@ -1,0 +1,3 @@
+include ':spine-stream-lib'
+include ':spine-stream-sample'
+rootProject.name = "spine-stream"
