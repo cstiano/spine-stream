@@ -11,8 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/spine-stream-lib" />
             <option value="$PROJECT_DIR$/spine-stream-sample" />
+            <option value="$PROJECT_DIR$/spine-stream-sdk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
