@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.spinestream.core">
+<manifest package="com.spinestream.core"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <provider
+            android:name="com.spinestream.core.provider.SpineStreamInitProvider"
+            android:authorities="${applicationId}.spinestreaminitprovider"
+            android:exported="false"
+            android:initOrder="900" />
+    </application>
 </manifest>

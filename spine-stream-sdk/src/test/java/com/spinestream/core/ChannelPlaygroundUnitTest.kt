@@ -13,6 +13,9 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ChannelPlaygroundUnitTest {
+
+    data class UserInfo(val name: String, val email: String)
+
     @ExperimentalCoroutinesApi
     @Test
     fun simpleChannel() {
@@ -21,24 +24,24 @@ class ChannelPlaygroundUnitTest {
         event. When the event was consumed the channel stops.
          */
 
-        val fruitArray = arrayOf("Apple", "Banana", "Pear")
+        val user = UserInfo("Cris", "cris@email.com")
 
-        val kotlinChannel = Channel<String>()
+        val kotlinChannel = Channel<Any>()
 
         runBlocking {
             GlobalScope.launch {
-                kotlinChannel.send(fruitArray[0])
+                UserInfo::class.simpleName?.let { kotlinChannel.send(it) }
             }
 
             GlobalScope.launch {
                 kotlinChannel.consumeEach { value ->
-                    println("Consumer 1: $value")
+                    println("Consumer 1: ${value}")
                 }
             }
 
             GlobalScope.launch {
                 kotlinChannel.consumeEach { value ->
-                    println("Consumer 2: $value")
+                    println("Consumer 2: ${value}")
                 }
             }
         }
@@ -69,7 +72,7 @@ class ChannelPlaygroundUnitTest {
 
             GlobalScope.launch {
                 kotlinChannel.openSubscription().let { channel ->
-                    for (value in channel){
+                    for (value in channel) {
                         println("Consumer 1: $value")
                     }
                 }
