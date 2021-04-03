@@ -1,4 +1,4 @@
-package com.spinestream.core
+package com.spinestream.core.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
