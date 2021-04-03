@@ -1,4 +1,4 @@
-package com.spinestream.core
+package com.spinestream.core.playground
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
