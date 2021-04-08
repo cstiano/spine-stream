@@ -1,5 +1,6 @@
 package com.spinestream.core.handler
 
+import androidx.annotation.VisibleForTesting
 import com.spinestream.core.channels.SharedChannels
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -10,7 +11,8 @@ import kotlin.reflect.KClass
 @ExperimentalCoroutinesApi
 open class Handler : Publisher, Subscriber {
 
-    private val channels by lazy { SharedChannels.provideChannels() }
+    @VisibleForTesting
+    val channels by lazy { SharedChannels.provideChannels() }
 
     override fun publish(event: Any) {
         val className = event::class.toString()
