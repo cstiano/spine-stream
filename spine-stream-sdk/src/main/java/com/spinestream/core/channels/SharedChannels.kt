@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap
 @ExperimentalCoroutinesApi
 object SharedChannels {
 
-    private val channels = ConcurrentHashMap<String, BroadcastChannel<Any>>(64)
+    private val channels = ConcurrentHashMap<String, BroadcastChannel<Any>>(DEFAULT_CAPACITY)
 
     fun provideChannels() = channels
 }

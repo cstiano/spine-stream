@@ -1,6 +1,7 @@
 package com.spinestream.core.handler
 
 import androidx.annotation.VisibleForTesting
+import com.spinestream.core.channels.DEFAULT_CAPACITY
 import com.spinestream.core.channels.SharedChannels
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -38,7 +39,7 @@ open class Handler : Publisher, Subscriber {
 
     private fun createChannelIfNecessary(eventClassName: String) {
         if (channels[eventClassName] == null) {
-            channels[eventClassName] = BroadcastChannel(64)
+            channels[eventClassName] = BroadcastChannel(DEFAULT_CAPACITY)
         }
     }
 }

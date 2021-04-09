@@ -11,11 +11,11 @@ class SpineStreamInitProvider : InitProvider() {
     private val channelsManager = ChannelsManager()
 
     override fun onCreate(): Boolean {
-        setupSpineStreamSDK()
+        initSpineStreamSDK()
         return true
     }
 
-    private fun setupSpineStreamSDK() {
+    private fun initSpineStreamSDK() {
         Log.i("SpineStreamSDK", "Initialize Spine Stream SDK")
         ProcessLifecycleOwner.get().lifecycle.addObserver(channelsManager)
     }
