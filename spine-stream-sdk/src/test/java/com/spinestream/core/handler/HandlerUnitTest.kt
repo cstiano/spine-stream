@@ -96,6 +96,30 @@ class HandlerUnitTest {
         coVerify { listenerOnEvent2(event2) }
     }
 
+    @Test
+    fun `subscribing and publishing events from different threads - more than one event published`() {
+        val handler = Handler()
+        val event1 = TestEvent1("testEvent")
+        val event2 = TestEvent2("testEvent")
+
+        runBlocking {
+            handler.subscribe(TestEvent1::class, listenerOnEvent1)
+            handler.subscribe(TestEvent2::class, listenerOnEvent2)
+            launch(Dispatchers.Main) {
+                handler.publish(event1)
+                handler.publish(event2)
+            }
+            launch(Dispatchers.IO) {
+                handler.publish(event1)
+                handler.publish(event2)
+            }
+        }
+
+        assertEquals(2, handler.channels.size)
+        coVerify(atLeast = 2) { listenerOnEvent1(event1) }
+        coVerify(atLeast = 2) { listenerOnEvent2(event2) }
+    }
+
     private suspend fun onEvent1(event: TestEvent1) {}
     private suspend fun onEvent2(event: TestEvent2) {}
 }
