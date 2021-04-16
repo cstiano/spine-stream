@@ -9,8 +9,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class SpineStreamInitProvider : InitProvider() {
 
-    private val channelsManager = ChannelsManager()
-
     override fun onCreate(): Boolean {
         initSpineStreamSDK()
         return true
@@ -20,6 +18,6 @@ class SpineStreamInitProvider : InitProvider() {
         if (BuildConfig.DEBUG) {
             Log.d("SpineStreamSDK", "Initializing Spine Stream SDK")
         }
-        ProcessLifecycleOwner.get().lifecycle.addObserver(channelsManager)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ChannelsManager())
     }
 }
