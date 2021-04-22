@@ -16,15 +16,16 @@ class ChannelsManager : LifecycleObserver {
         SharedChannels.createChannels(ConcurrentHashMap<String, BroadcastChannel<Any>>(DEFAULT_CAPACITY))
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onStop() {
         if (BuildConfig.DEBUG) {
-            Log.d("SpineStreamSDK", "onDestroy Channel Spine Stream SDK")
+            Log.d("SpineStreamSDK", "onStop Channel Spine Stream SDK")
         }
 
         val channels = SharedChannels.provideChannels()
         for (channel in channels) {
             channel.value.close()
         }
+        channels.clear()
     }
 }
