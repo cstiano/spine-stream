@@ -177,7 +177,6 @@ class ChannelPlaygroundUnitTest {
             }
 
             println("Finish")
-//            readLine()
 
             kotlinChannel.close()
         }
