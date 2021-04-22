@@ -24,6 +24,7 @@ class ChannelsManager : LifecycleObserver {
 
         val channels = SharedChannels.provideChannels()
         for (channel in channels) {
+            channel.value.cancel()
             channel.value.close()
         }
         channels.clear()
