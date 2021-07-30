@@ -19,7 +19,7 @@ allprojects {
 Add SpineStream as an dependency:
 ```
 dependencies {
-    implementation 'com.github.cstiano:spine-stream.spine-stream-sdk:0.1.0'
+    implementation 'com.github.cstiano:spine-stream:0.1.0'
 }
 ```
 
